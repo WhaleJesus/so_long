@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/22 05:38:05 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/05/22 14:09:45 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define KEY_D 100
 # define KEY_SPACE 32
 # define KEY_ESC 65307
+
 
 
 typedef struct	s_img
@@ -45,12 +46,6 @@ typedef struct	s_mlx
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	my_draw(t_img *img, int left, int top, int right, int bottom, int color);
 int	key_hook(int keycode, t_mlx *mlx);
-int	letter_n(t_img *img, int left, int spacing, int width, int height, int color);
-int	letter_i(t_img *img, int left, int spacing, int width, int height, int color);
-int	letter_g(t_img *img, int left, int spacing, int width, int height, int color);
-int	letter_e(t_img *img, int left, int spacing, int width, int height, int color);
-int	letter_r(t_img *img, int left, int spacing, int width, int height, int color);
-void	drawNig(t_mlx *mlx);
 int	create_trgb(int t, int r, int g, int b);
 
 #endif

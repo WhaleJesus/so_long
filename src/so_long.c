@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/22 05:49:16 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/05/22 14:09:42 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,15 @@ int	main(void)
 {
 	t_mlx	mlx;
 	t_img	img;
+	t_img	duck;
 	int		i;
 
 	i = 0;
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 1920, 900, "hello");
-	img.img = mlx_new_image(mlx.mlx, 1920, 900);
+	img.img = mlx_new_image(mlx.mlx, 500, 400);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
 	mlx.img = img;
 	mlx.niga = i;
 	mlx_key_hook(mlx.win, key_hook, &mlx);
