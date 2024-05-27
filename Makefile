@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/05/22 14:01:59 by sklaps           ###   ########.fr        #
+#    Updated: 2024/05/25 22:09:49 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = mlx-linux
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-SRC = src/so_long.c \
-	  src/draw.c
+SRC = get_next_line/get_next_line.c \
+	  get_next_line/get_next_line_utils.c \
+	  src/so_long.c \
+	  src/draw.c \
+	  src/rand_num.c
 EXT_LIB = ft_printf/libftprintf.a
 OBJ = $(SRC:.c=.o)
 NAME = so_long

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/25 21:54:19 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/05/25 18:24:36 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,17 @@ typedef struct	s_imgfile
 	int		x;
 	int		y;
 	char	*relative_path;
+	int		count;
+	t_imgfile	next;
 }				t_imgfile;
 
 typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
-	int		width;
-	int		height;
+	t_imgfile	img;
+	int		timer;
+	int		seed;
 }	t_mlx;
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
