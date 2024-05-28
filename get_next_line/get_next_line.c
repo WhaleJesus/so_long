@@ -6,13 +6,13 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:27:19 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/03 13:42:11 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/05/28 13:38:22 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	found_newline(t_list *list)
+int	found_newline(t_lst *list)
 {
 	int	i;
 
@@ -26,10 +26,10 @@ int	found_newline(t_list *list)
 	return (0);
 }
 
-void	append(t_list **list, char *buf)
+void	append(t_lst **list, char *buf)
 {
-	t_list	*new_node;
-	t_list	*last_node;
+	t_lst	*new_node;
+	t_lst	*last_node;
 
 	last_node = ft_lstlast(*list);
 	new_node = malloc(sizeof(t_list));
@@ -43,7 +43,7 @@ void	append(t_list **list, char *buf)
 	new_node->next = NULL;
 }
 
-void	create_list(t_list **list, int fd)
+void	create_list(t_lst **list, int fd)
 {
 	char	*buf;
 	int		char_read;
@@ -64,7 +64,7 @@ void	create_list(t_list **list, int fd)
 	}
 }
 
-char	*get_line(t_list *list)
+char	*get_line(t_lst *list)
 {
 	int		len;
 	char	*ret;
@@ -81,7 +81,7 @@ char	*get_line(t_list *list)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list;
+	static t_lst	*list;
 	char			*next_line;
 
 	if (!list)

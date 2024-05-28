@@ -6,13 +6,13 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:48:31 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/03 12:46:33 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/05/28 13:37:39 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	len_to_newline(t_list *list)
+int	len_to_newline(t_lst *list)
 {
 	int	i;
 	int	k;
@@ -35,7 +35,7 @@ int	len_to_newline(t_list *list)
 	return (i);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_lst *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -44,9 +44,9 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstclear(t_list **list, t_list *new_node, char *buf)
+void	ft_lstclear(t_lst **list, t_list *new_node, char *buf)
 {
-	t_list	*temp;
+	t_lst	*temp;
 
 	if (!list)
 		return ;
@@ -67,7 +67,7 @@ void	ft_lstclear(t_list **list, t_list *new_node, char *buf)
 	}
 }
 
-void	copy_str(t_list *list, char *ret)
+void	copy_str(t_lst *list, char *ret)
 {
 	int	i;
 	int	k;
@@ -91,10 +91,10 @@ void	copy_str(t_list *list, char *ret)
 	ret[k] = '\0';
 }
 
-void	polish_list(t_list **list)
+void	polish_list(t_lst **list)
 {
-	t_list	*new_node;
-	t_list	*last_node;
+	t_lst	*new_node;
+	t_lst	*last_node;
 	char	*buf;
 	int		i;
 	int		k;
