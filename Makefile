@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/05/25 22:09:49 by sklaps           ###   ########.fr        #
+#    Updated: 2024/06/04 17:26:05 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,20 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = mlx-linux
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-SRC = get_next_line/get_next_line.c \
-	  get_next_line/get_next_line_utils.c \
+SRC = \
 	  src/so_long.c \
 	  src/draw.c \
-	  src/rand_num.c
-EXT_LIB = ft_printf/libftprintf.a
+	  src/rand_num.c \
+	  src/draw_map.c \
+	  src/error.c
+EXT_LIB = libft/libft.a
 OBJ = $(SRC:.c=.o)
 NAME = so_long
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd ft_printf && make all clean && cd ../ && $(CC) $(OBJ) $(EXT_LIB) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	cd libft && make all clean && cd ../ && $(CC) $(OBJ) $(EXT_LIB) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
 	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/25 22:27:44 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/04 17:32:08 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,20 @@ int	key_hook(int keycode, t_mlx *mlx)
 }
 
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_mlx		mlx;
+	t_imgfile	*environment;
+	t_imgfile	*player;
+	char		*map;
+
+	if (argc != 2)
+	{
+		display_error(1);
+		exit(0);
+	}
+
+	map = argv[argc - 1];
 
 	mlx.mlx = mlx_init();
 	mlx.width = 1080;
@@ -40,6 +51,8 @@ int	main(void)
 	mlx.win = mlx_new_window(mlx.mlx, mlx.width, mlx.height, "hello");
 	
 	mlx_key_hook(mlx.win, key_hook, &mlx);
-	//mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);
+
+	read_map(map, mlx)
+	draw_map();
 	mlx_loop(mlx.mlx);
 }

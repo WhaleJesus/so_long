@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 14:22:58 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/18 14:30:12 by sklaps           ###   ########.fr       */
+/*   Created: 2024/06/04 17:21:58 by sklaps            #+#    #+#             */
+/*   Updated: 2024/06/04 17:25:03 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include "../ft_printf/ft_printf.h"
-#include "get_next_line.h"
+#include "../so_long.h"
 
-int	main(void)
+void	display_error(int error)
 {
-	int	fd;
-	char	*str;
+	char	*msg;
 
-	fd = open("test.txt", O_RDONLY);
-	str = "";
-	while (str)
-	{
-		str = get_next_line(fd);
-		ft_printf("%s", str);
-	}
+	if (error == 1)
+		msg = "Wrong amount of args";
+
+	ft_printf("Error: %s.\n", msg);
 }
