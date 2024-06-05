@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/04 17:25:34 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/05 16:45:57 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include "mlx_linux/mlx.h"
 # include "libft/libft.h"
+# include <fcntl.h>
+
+# define SCREEN_WIDTH 1080
+# define SCREEN_HEIGHT 700
 
 # define KEY_W 119
 # define KEY_A 97
@@ -51,10 +55,10 @@ typedef struct	s_mlx
 {
 	void	*mlx;
 	void	*win;
-	int		width;
-	int		height;
 	struct s_imgfile	*environment;
 	struct s_imgfile	*player;
+	int		map_width;
+	int		map_height;
 }	t_mlx;
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
@@ -63,7 +67,8 @@ int	key_hook(int keycode, t_mlx *mlx);
 int	create_trgb(int t, int r, int g, int b);
 
 unsigned int lcg_rand_range(unsigned int *current, unsigned int min, unsigned int max);
-int	draw_map(void);
+int	draw_map(char **map, t_mlx *mlx);
+char	**read_map(char *path, t_mlx *mlx);
 
 void	display_error(int error);
 
