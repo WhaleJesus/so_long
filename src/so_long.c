@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/05 16:43:40 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/06 16:18:28 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char *argv[])
 	}
 
 	path = argv[argc - 1];
+	ft_printf("%s\n", path);
 	map = read_map(path, &mlx);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * 100, mlx.map_height * 100, "hello");
