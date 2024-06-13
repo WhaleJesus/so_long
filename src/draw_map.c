@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/13 13:48:25 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/13 18:45:41 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	draw_map(char **map, t_mlx *mlx)
 	int	x;
 
 	y = 0;
-	while (map[y])
+	while (y < mlx->map_height)
 	{
 		x = 0;
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
 				my_put_img(mlx, mlx->img_wall, x, y);
-			else
+			else if (map[y][x] != '\n')
 			{
 				my_put_img(mlx, mlx->img_background, x, y);
 				if (map[y][x] == 'p')
@@ -80,7 +80,7 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 	if (fd == -1)
 	{
 		ft_printf("Error Opening Map file");
-		return (-1);
+		exit(0);
 	}
 	i = 0;
 	line = "";
@@ -111,6 +111,11 @@ char	**read_map(char *path, t_mlx *mlx)
 	int		fd;
 
 	get_map_sizes(mlx, path);
+	if (mlx->map_height * GRID_SIZE > SCREEN_HEIGHT || mlx->map_width - 1 * GRID_SIZE > SCREEN_WIDTH)
+	{
+		ft_printf("Error: please make map no bigger than: W:%i H:%i\n", SCREEN_WIDTH / GRID_SIZE, SCREEN_HEIGHT / GRID_SIZE);
+		exit(0);
+	}
 	fd = open(path, O_RDONLY);
 	i = 0;
 	map = malloc(sizeof(char *) * mlx->map_height);

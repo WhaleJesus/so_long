@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/13 13:25:16 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/13 19:07:30 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # define SCREEN_HEIGHT 700
 # define GRID_SIZE 100
 
-# define PATH_WALL "img/wall.xmp"
-# define PATH_PLAYER "img/player.xmp"
-# define PATH_COLLECTIBLE "img/collectible.xmp"
-# define PATH_EXIT "img/exit.xmp"
-# define PATH_BACKGROUND "img/background.xmp"
+# define PATH_WALL "img/wall.xpm"
+# define PATH_PLAYER "img/player.xpm"
+# define PATH_COLLECTIBLE "img/collectible.xpm"
+# define PATH_EXIT "img/exit.xpm"
+# define PATH_BACKGROUND "img/background.xpm"
 
 # define KEY_W 119
 # define KEY_A 97
@@ -71,7 +71,6 @@ typedef struct	s_mlx
 }	t_mlx;
 
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void			my_draw(t_img *img, int left, int top, int right, int bottom, int color);
 int				key_hook(int keycode, t_mlx *mlx);
 int				create_trgb(int t, int r, int g, int b);
 

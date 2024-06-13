@@ -6,11 +6,18 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/13 13:49:17 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/13 19:07:46 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+int	exit_program(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	exit(0);
+	return (0);
+}
 
 int	key_hook(int keycode, t_mlx *mlx)
 {
@@ -22,8 +29,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 	else if (keycode == KEY_ESC)
 	{
 		ft_printf("esc");
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		exit(0);
+		exit_program(mlx);
 	}
 	ft_printf("\n");
 	return (0);
@@ -46,10 +52,10 @@ int	main(int argc, char *argv[])
 	ft_printf("%s\n", path);
 	map = read_map(path, &mlx);
 	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * 100, mlx.map_height * 100, "hello");
+	mlx.win = mlx_new_window(mlx.mlx, mlx.map_width * GRID_SIZE, mlx.map_height * GRID_SIZE, "hello");
 	
 	mlx_key_hook(mlx.win, key_hook, &mlx);
-
+	mlx_hook(mlx.win, 17, 0, exit_program, &mlx);
 	init_imgs(&mlx);
 	draw_map(map, &mlx);
 	mlx_loop(mlx.mlx);
