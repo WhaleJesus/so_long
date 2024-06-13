@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/06 16:18:28 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/13 13:49:17 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char *argv[])
 	
 	mlx_key_hook(mlx.win, key_hook, &mlx);
 
+	init_imgs(&mlx);
 	draw_map(map, &mlx);
 	mlx_loop(mlx.mlx);
 }
