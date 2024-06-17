@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/14 18:48:48 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/17 15:00:16 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int				create_trgb(int t, int r, int g, int b);
 unsigned int	lcg_rand_range(unsigned int *current, unsigned int min, unsigned int max);
 
 void			my_put_img(t_mlx *mlx, void *img, int x, int y);
+void			*my_create_img(t_mlx *mlx, char *path);
 int				init_imgs(t_mlx *mlx);
+void			init_mlx(t_mlx *mlx, char *path);
 
 int				draw_map(char **map, t_mlx *mlx);
 char			**read_map(char *path, t_mlx *mlx);

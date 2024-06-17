@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/06/14 18:32:50 by sklaps           ###   ########.fr        #
+#    Updated: 2024/06/17 14:52:33 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = \
 	  src/draw_map.c \
 	  src/error.c \
 	  src/move.c \
-	  src/close.c
+	  src/close.c \
+	  src/init_game.c
 EXT_LIB = libft/libft.a
 OBJ = $(SRC:.c=.o)
 NAME = so_long

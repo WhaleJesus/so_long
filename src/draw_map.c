@@ -6,37 +6,11 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 12:29:59 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/17 17:07:49 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-void	*my_create_img(t_mlx *mlx, char *path)
-{
-	int		height;
-	int		width;
-	void	*img;
-
-	img = mlx_xpm_file_to_image(mlx->mlx, path, &width, &height);
-	return (img);
-}
-
-
-int init_imgs(t_mlx *mlx)
-{
-	mlx->img_wall = my_create_img(mlx, PATH_WALL);
-	mlx->img_player = my_create_img(mlx, PATH_PLAYER);
-	mlx->img_collectible = my_create_img(mlx, PATH_COLLECTIBLE);
-	mlx->img_exit = my_create_img(mlx, PATH_EXIT);
-	mlx->img_background = my_create_img(mlx, PATH_BACKGROUND);
-	return (1);
-}
-
-void	my_put_img(t_mlx *mlx, void *img, int x, int y)
-{
-	mlx_put_image_to_window(mlx->mlx, mlx->win, img, x * GRID_SIZE, y * GRID_SIZE);
-}
 
 int	draw_map(char **map, t_mlx *mlx)
 {
@@ -80,11 +54,12 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 	char	*line;
 	
 	mlx->map_width = 0;
+	mlx->map_height = 0;
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_printf("Error Opening Map file");
-		exit_program(mlx);
+		exit(0);
 	}
 	i = 0;
 	while (line)
@@ -100,10 +75,8 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 		}
 		mlx->map_width = width;
 		free(line);
-		i++;
+		mlx->map_height++;
 	}
-	mlx->map_height = i;
-	get_next_line(fd);
 	free(line);
 	close(fd);
 	return (0);
@@ -134,7 +107,7 @@ char	**read_map(char *path, t_mlx *mlx)
 		map[i] = line;
 		i++;
 	}
-	get_next_line(fd);
+	ft_printf("%i", mlx->map_height);
 	free(line);
 	close(fd);
 	return (map);
