@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/14 18:56:32 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/17 12:29:59 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,27 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 	if (fd == -1)
 	{
 		ft_printf("Error Opening Map file");
-		exit(0);
+		exit_program(mlx);
 	}
 	i = 0;
-	line = "";
 	while (line)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
+		if (NULL == line)
 			break ;
 		width = ft_strlen(line) - 1;
 		if ((width != mlx->map_width) && (mlx->map_width != 0))
 		{
 			display_error(2);
-			exit(0);
+			exit_program(mlx);
 		}
 		mlx->map_width = width;
+		free(line);
 		i++;
 	}
 	mlx->map_height = i;
+	get_next_line(fd);
+	free(line);
 	close(fd);
 	return (0);
 }
@@ -118,7 +120,7 @@ char	**read_map(char *path, t_mlx *mlx)
 	if (mlx->map_height * GRID_SIZE > SCREEN_HEIGHT || mlx->map_width - 1 * GRID_SIZE > SCREEN_WIDTH)
 	{
 		ft_printf("Error: please make map no bigger than: W:%i H:%i\n", SCREEN_WIDTH / GRID_SIZE, SCREEN_HEIGHT / GRID_SIZE);
-		exit(0);
+		exit_program(mlx);
 	}
 	fd = open(path, O_RDONLY);
 	i = 0;
@@ -127,11 +129,12 @@ char	**read_map(char *path, t_mlx *mlx)
 	while (line)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
+		if (NULL == line)
 			break ;
 		map[i] = line;
 		i++;
 	}
+	get_next_line(fd);
 	free(line);
 	close(fd);
 	return (map);

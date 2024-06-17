@@ -3,97 +3,135 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
+/*   By: fdaems <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:27:19 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/03 15:21:19 by sklaps           ###   ########.fr       */
+/*   Created: 2024/04/18 14:50:33 by fdaems            #+#    #+#             */
+/*   Updated: 2024/06/17 11:37:01 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
-int	found_newline(t_lst *list)
+int	is_new_line(t_lst *lst)
 {
 	int	i;
 
-	if (list == NULL)
+	if (lst == NULL)
 		return (0);
-	list = gnl_lstlast(list);
 	i = 0;
-	while (list->content[i] && i < BUFFER_SIZE)
-		if (list->content[i++] == '\n')
+	lst = gnl_lstlast(lst);
+	while (lst -> content[i] && i < BUFFER_SIZE)
+	{
+		if (lst -> content[i] == '\n')
 			return (1);
+		i++;
+	}
 	return (0);
 }
 
-void	append(t_lst **list, char *buf)
+void	make_list(t_lst **lst, int fd)
 {
-	t_lst	*new_node;
-	t_lst	*last_node;
-
-	last_node = gnl_lstlast(*list);
-	new_node = malloc(sizeof(t_lst));
-	if (!new_node)
-		return ;
-	if (!last_node)
-		*list = new_node;
-	else
-		last_node->next = new_node;
-	new_node->content = buf;
-	new_node->next = NULL;
-}
-
-void	create_list(t_lst **list, int fd)
-{
+	int		n;
 	char	*buf;
-	int		char_read;
 
-	while (!found_newline(*list))
+	while (!is_new_line(*lst))
 	{
-		buf = malloc(BUFFER_SIZE + 1);
+		buf = (char *)malloc(BUFFER_SIZE + 1);
 		if (!buf)
 			return ;
-		char_read = read(fd, buf, BUFFER_SIZE);
-		if (!char_read)
+		n = read(fd, buf, BUFFER_SIZE);
+		if (!n)
 		{
 			free(buf);
 			return ;
 		}
-		buf[char_read] = '\0';
-		append(list, buf);
+		buf[n] = '\0';
+		gnl_lstadd_back(lst, buf);
 	}
 }
 
-char	*get_line(t_lst *list)
+unsigned int	count_chars(t_lst **lst)
 {
-	int		len;
-	char	*ret;
+	unsigned int	n;
+	unsigned int	i;
+	t_lst			*now;
 
-	if (list == NULL)
+	if (*lst == NULL)
+		return (0);
+	now = *lst;
+	n = 0;
+	while (now)
+	{
+		i = 0;
+		while (now -> content[i])
+		{
+			if (now -> content[i] == '\n')
+			{
+				n++;
+				return (n);
+			}
+			i++;
+			n++;
+		}
+		now = now -> next;
+	}
+	return (n);
+}
+
+char	*make_string(t_lst **lst)
+{
+	char			*d;
+	unsigned int	len;
+
+	if (!*lst)
 		return (NULL);
-	len = len_to_newline(list);
-	ret = malloc(len + 1);
-	if (!ret)
+	len = count_chars(lst);
+	d = (char *)malloc(len + 1);
+	if (!d)
 		return (NULL);
-	copy_str(list, ret);
-	return (ret);
+	copy_str(lst, d);
+	return (d);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_lst	*list;
-	char			*next_line;
+	static t_lst	*lst;
+	char			*line;
 
-	if (!list)
-		list = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (!lst)
+		lst = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
-	create_list(&list, fd);
-	if (NULL == list)
+	make_list(&lst, fd);
+	if (lst == NULL)
 		return (NULL);
-	next_line = get_line(list);
-	if (NULL == next_line)
-		return (NULL);
-	polish_list(&list);
-	return (next_line);
+	line = make_string(&lst);
+	start_new(&lst);
+	return (line);
 }
+/*
+#include <fcntl.h>
+#include <stdio.h>
+int	main()
+{
+	char	*line;
+	int		i;
+	int		fd1;
+
+	// Open the files
+	fd1 = open("test", O_RDONLY);
+
+	i = 1;
+	while ((line = get_next_line(fd1)))
+	{
+		printf("line [%02d] from file 1: %s\n", i, line);
+		free(line);
+		i++;
+	}
+
+	// Close the files
+	close(fd1);
+
+	return (0);
+
+}
+*/

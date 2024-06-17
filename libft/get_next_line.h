@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
+/*   By: fdaems <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 18:13:13 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/03 15:01:32 by sklaps           ###   ########.fr       */
+/*   Created: 2024/04/23 11:05:51 by fdaems            #+#    #+#             */
+/*   Updated: 2024/06/17 11:38:34 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -17,25 +16,25 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_lst
 {
 	char			*content;
 	struct s_lst	*next;
-}	t_lst;
+}					t_lst;
 
-int		len_to_newline(t_lst *list);
-t_lst	*gnl_lstlast(t_lst *lst);
-void	gnl_lstclear(t_lst **list, t_lst *new_node, char *buf);
-void	polish_list(t_lst **list);
-char	*get_next_line(int fd);
-char	*get_line(t_lst *list);
-void	create_list(t_lst **list, int fd);
-void	append(t_lst **lst, char *buf);
-int		found_newline(t_lst *list);
-void	copy_str(t_lst *list, char *ret);
+void				copy_str(t_lst **lst, char *d);
+void				gnl_lstadd_back(t_lst **lst, char *buf);
+t_lst				*gnl_lstlast(t_lst *lst);
+char				*get_next_line(int fd);
+char				*make_string(t_lst **lst);
+unsigned int		count_chars(t_lst **lst);
+t_lst				*make_new_line(t_lst **lst, int fd);
+int					is_new_line(t_lst *lst);
+void				gnl_lstclear(t_lst **lst, t_lst *new, char *buf);
+void				start_new(t_lst **lst);
 
 #endif

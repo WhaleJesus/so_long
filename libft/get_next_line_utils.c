@@ -3,36 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
+/*   By: fdaems <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:48:31 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/03 15:23:12 by sklaps           ###   ########.fr       */
+/*   Created: 2024/04/29 15:48:42 by fdaems            #+#    #+#             */
+/*   Updated: 2024/06/17 11:39:17 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	len_to_newline(t_lst *list)
+void	gnl_lstadd_back(t_lst **lst, char *buf)
 {
-	int	i;
-	int	k;
+	t_lst	*last;
+	t_lst	*new;
 
+	last = gnl_lstlast(*lst);
+	new = malloc(sizeof(t_lst));
+	if (!new)
+		return ;
+	new->content = buf;
+	if (!last)
+		*lst = new;
+	else
+		last->next = new;
+	new->content = buf;
+	new->next = NULL;
+}
+
+void	copy_str(t_lst **lst, char *d)
+{
+	unsigned int	i;
+	unsigned int	k;
+	t_lst			*buf;
+
+	k = 0;
 	i = 0;
-	while (list)
+	buf = *lst;
+	if (!buf)
+		return ;
+	while (buf)
 	{
 		k = 0;
-		while (list->content[k])
+		while (buf->content[k])
 		{
-			if (list->content[k] == '\n')
+			if (buf->content[k] == '\n')
 			{
-				return (i + 1);
+				d[i] = '\n';
+				d[i + 1] = '\0';
+				return ;
 			}
-			++k;
-			++i;
+			d[i++] = buf->content[k++];
 		}
-		list = list->next;
+		buf = buf->next;
 	}
-	return (i);
+	d[i] = '\0';
 }
 
 t_lst	*gnl_lstlast(t_lst *lst)
@@ -44,78 +68,52 @@ t_lst	*gnl_lstlast(t_lst *lst)
 	return (lst);
 }
 
-void	gnl_lstclear(t_lst **list, t_lst *new_node, char *buf)
+void	gnl_lstclear(t_lst **lst, t_lst *new, char *buf)
 {
-	t_lst	*temp;
+	t_lst	*nxt;
 
-	if (!list)
+	if (lst == NULL)
 		return ;
-	while (*list)
+	while (*lst)
 	{
-		temp = (*list)->next;
-		free((*list)->content);
-		free(*list);
-		*list = temp;
+		nxt = (*lst)->next;
+		free((*lst)->content);
+		free(*lst);
+		*lst = nxt;
 	}
-	*list = NULL;
-	if (new_node->content[0])
-		*list = new_node;
+	*lst = NULL;
+	if (new->content[0])
+		*lst = new;
 	else
 	{
 		free(buf);
-		free(new_node);
+		free(new);
 	}
 }
 
-void	copy_str(t_lst *list, char *ret)
+void	start_new(t_lst **lst)
 {
-	int	i;
-	int	k;
-
-	k = 0;
-	while (list)
-	{
-		i = 0;
-		while (list->content[i])
-		{
-			if (list->content[i] == '\n')
-			{
-				ret[k++] = '\n';
-				ret[k] = '\0';
-				return ;
-			}
-			ret[k++] = list->content[i++];
-		}
-		list = list->next;
-	}
-	ret[k] = '\0';
-}
-
-void	polish_list(t_lst **list)
-{
-	t_lst	*new_node;
-	t_lst	*last_node;
-	char	*buf;
+	t_lst	*new;
+	t_lst	*now;
 	int		i;
-	int		k;
+	int		j;
+	char	*buf;
 
-	if (!list || !(*list))
-		return ;
-	new_node = malloc(sizeof(t_lst));
-	if (!new_node)
-		return ;
-	buf = malloc(BUFFER_SIZE + 1);
-	if (!buf)
-		return ;
-	last_node = gnl_lstlast(*list);
+	j = 0;
 	i = 0;
-	k = 0;
-	while (last_node->content[i] != '\n' && last_node->content[i])
-		++i;
-	while (last_node->content[i] && last_node->content[++i])
-		buf[k++] = last_node->content[i];
-	buf[k] = '\0';
-	new_node->content = buf;
-	new_node->next = NULL;
-	gnl_lstclear(list, new_node, buf);
+	now = gnl_lstlast(*lst);
+	while (now->content[i] != '\n' && now->content[i])
+		i++;
+	buf = (char *)malloc(BUFFER_SIZE + 1);
+	new = malloc(sizeof(t_lst));
+	if (!buf || !new)
+		return ;
+	if (now->content[i] == '\n')
+		i++;
+	while (now->content[i])
+		buf[j++] = now->content[i++];
+	buf[j] = '\0';
+	new->content = buf;
+	new->next = NULL;
+	gnl_lstclear(lst, new, buf);
 }
