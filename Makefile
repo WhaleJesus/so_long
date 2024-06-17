@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/06/13 10:27:30 by sklaps           ###   ########.fr        #
+#    Updated: 2024/06/14 18:32:50 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRC = \
 	  src/draw.c \
 	  src/rand_num.c \
 	  src/draw_map.c \
-	  src/error.c
+	  src/error.c \
+	  src/move.c \
+	  src/close.c
 EXT_LIB = libft/libft.a
 OBJ = $(SRC:.c=.o)
 NAME = so_long

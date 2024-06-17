@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/13 19:07:30 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/14 18:48:48 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ typedef struct	s_mlx
 	void	*img_collectible;
 	void	*img_exit;
 	void	*img_background;
+	char	**map;
 	int		map_width;
 	int		map_height;
+	int		x;
+	int		y;
 	int		turn;
 	int		score;
 }	t_mlx;
@@ -76,11 +79,17 @@ int				create_trgb(int t, int r, int g, int b);
 
 unsigned int	lcg_rand_range(unsigned int *current, unsigned int min, unsigned int max);
 
+void			my_put_img(t_mlx *mlx, void *img, int x, int y);
 int				init_imgs(t_mlx *mlx);
 
 int				draw_map(char **map, t_mlx *mlx);
 char			**read_map(char *path, t_mlx *mlx);
 
+void			turn_move_vertical(t_mlx *mlx, int direction);
+void			turn_move_horizontal(t_mlx *mlx, int direction);
 void			display_error(int error);
+int				exit_program(t_mlx *mlx);
+void			free_array(t_mlx *mlx);
+void			free_imgs(t_mlx *mlx);
 
 #endif
