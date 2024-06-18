@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/18 11:27:52 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 16:21:50 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	init_mlx(t_mlx *mlx, char *path)
 	mlx->score = 0;
 	mlx->turn = 0;
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, mlx->map_width * GRID_SIZE, mlx->map_height * GRID_SIZE, "hello");
+	mlx->win = mlx_new_window(mlx->mlx, mlx->map_width * GRID_SIZE, (mlx->map_height * GRID_SIZE) + 20, "hello");
 	mlx_key_hook(mlx->win, key_hook, mlx);
 	mlx_hook(mlx->win, 17, 0, exit_program, mlx);
 	init_imgs(mlx);
@@ -128,10 +128,16 @@ void	init_mlx(t_mlx *mlx, char *path)
 
 int	init_imgs(t_mlx *mlx)
 {
+	t_img	img;
+
+	img.img = mlx_new_image(mlx->mlx, mlx->map_width * GRID_SIZE, 20);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img_clear_pixel_put(mlx, &img);
 	mlx->img_wall = my_create_img(mlx, PATH_WALL);
 	mlx->img_player = my_create_img(mlx, PATH_PLAYER);
 	mlx->img_collectible = my_create_img(mlx, PATH_COLLECTIBLE);
 	mlx->img_exit = my_create_img(mlx, PATH_EXIT);
 	mlx->img_background = my_create_img(mlx, PATH_BACKGROUND);
+	mlx->img_clear = &img;
 	return (1);
 }

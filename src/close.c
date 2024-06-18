@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 12:26:41 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 14:11:16 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	free_imgs(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->img_exit);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
+	free(mlx->mlx);
 }

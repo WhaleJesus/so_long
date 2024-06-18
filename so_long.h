@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/18 12:15:56 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 16:21:43 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct	s_imgfile
 
 typedef struct	s_flood
 {
-	char	**visited;
+	int		**visited;
 	int		x;
 	int		y;
 }	t_flood;
@@ -75,6 +75,7 @@ typedef struct	s_mlx
 	void	*img_collectible;
 	void	*img_exit;
 	void	*img_background;
+	struct s_img	*img_clear;
 	char	**map;
 	int		map_width;
 	int		map_height;
@@ -82,9 +83,12 @@ typedef struct	s_mlx
 	int		y;
 	int		turn;
 	int		score;
+	int		num_collectibles;
+	struct s_flood	*flood;
 }	t_mlx;
 
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			img_clear_pixel_put(t_mlx *mlx, t_img *img);
 int				key_hook(int keycode, t_mlx *mlx);
 int				create_trgb(int t, int r, int g, int b);
 

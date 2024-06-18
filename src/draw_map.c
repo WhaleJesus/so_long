@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 17:07:49 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 15:22:14 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 		if ((width != mlx->map_width) && (mlx->map_width != 0))
 		{
 			display_error(2);
-			exit_program(mlx);
+			free(line);
+			exit(0);
 		}
 		mlx->map_width = width;
 		free(line);
@@ -107,7 +108,6 @@ char	**read_map(char *path, t_mlx *mlx)
 		map[i] = line;
 		i++;
 	}
-	ft_printf("%i", mlx->map_height);
 	free(line);
 	close(fd);
 	return (map);
