@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 15:00:16 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 12:15:56 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
 # define KEY_SPACE 32
 # define KEY_ESC 65307
 
@@ -54,6 +58,13 @@ typedef struct	s_imgfile
 	int			img_height;
 	char		*relative_path;
 }	t_imgfile;
+
+typedef struct	s_flood
+{
+	char	**visited;
+	int		x;
+	int		y;
+}	t_flood;
 
 typedef struct	s_mlx
 {
@@ -94,4 +105,5 @@ int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);
 
+int is_path_to_exit(t_mlx *mlx);
 #endif

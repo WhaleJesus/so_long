@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 17:06:43 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 11:27:52 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,15 @@ void	check_map_extension(char *path)
 	exit(0);
 }
 
+void	check_flood(t_mlx *mlx)
+{
+	if (is_path_to_exit(mlx) != 1)
+	{
+		ft_printf("Error: no valid path\n");
+		exit_program(mlx);
+	}
+}
+
 void	init_mlx(t_mlx *mlx, char *path)
 {
 	check_map_extension(path);
@@ -114,6 +123,7 @@ void	init_mlx(t_mlx *mlx, char *path)
 	draw_map(mlx->map, mlx);
 	check_map_edges(mlx);
 	check_map_tokens(mlx);
+	check_flood(mlx);
 }
 
 int	init_imgs(t_mlx *mlx)

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/17 14:52:52 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/18 11:11:01 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	exit_program(t_mlx *mlx)
 int	key_hook(int keycode, t_mlx *mlx)
 {
 	ft_printf("Hello from key_hook! %i\n", keycode);
-	if ((keycode == KEY_W))
+	if ((keycode == KEY_W) || (keycode == KEY_UP))
 		turn_move_vertical(mlx, -1);
-	else if (keycode == KEY_D)
+	else if ((keycode == KEY_D) || (keycode == KEY_RIGHT))
 		turn_move_horizontal(mlx, 1);
-	else if (keycode == KEY_S)
+	else if ((keycode == KEY_S) || (keycode == KEY_DOWN))
 		turn_move_vertical(mlx, 1);
-	else if (keycode == KEY_A)
+	else if ((keycode == KEY_A) || (keycode == KEY_LEFT))
 		turn_move_horizontal(mlx, -1);
 	else if (keycode == KEY_ESC)
 	{
