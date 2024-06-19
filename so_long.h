@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:29:25 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:34:35 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void			check_map_edges(t_mlx *mlx);
 void			check_map_tokens(t_mlx *mlx);
 void			check_map_extension(char *path);
 void			check_map_too_big(t_mlx *mlx);
+void			check_map_illegal_char(char c, t_mlx *mlx);
 
 int				draw_map(char **map, t_mlx *mlx);
 char			**read_map(char *path, t_mlx *mlx);

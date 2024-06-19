@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:05:28 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:37:59 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	draw_map2(char **map, t_mlx *mlx, int x, int y)
 {
 	my_put_img(mlx, mlx->img_background, x, y);
-	if (map[y][x] == 'p')
+	if (map[y][x] == 'P')
 	{
 		mlx->x = x;
 		mlx->y = y;
 		my_put_img(mlx, mlx->img_player, x, y);
 	}
-	else if (map[y][x] == 'c')
+	else if (map[y][x] == 'C')
 		my_put_img(mlx, mlx->img_collectible, x, y);
-	else if (map[y][x] == 'e')
+	else if (map[y][x] == 'E')
 		my_put_img(mlx, mlx->img_exit, x, y);
 }
 

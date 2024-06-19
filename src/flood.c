@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:13:20 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 13:54:23 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:40:25 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	flood_fill(t_mlx *mlx, int x, int y, int directions[4][2])
 	int	new_x;
 	int	new_y;
 
-	if (mlx->map[y][x] == 'e')
+	if (mlx->map[y][x] == 'E')
 		return (1);
 	mlx->flood->visited[y][x] = 1;
 	i = 0;

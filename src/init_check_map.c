@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:14:44 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:33:10 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:52:51 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,23 @@ void	check_map_edges(t_mlx *mlx)
 	}
 }
 
+int	check_map_char2(t_mlx *mlx, char *c, char **map, int i)
+{
+	int	j;
+	int	num_c;
+
+	num_c = 0;
+	j = 0;
+	while (map[i][j])
+	{
+		check_map_illegal_char(map[i][j], mlx);
+		if (map[i][j] == c[0])
+			num_c++;
+		j++;
+	}
+	return (num_c);
+}
+
 int	check_map_char(t_mlx *mlx, char *c, int min, int max)
 {
 	int		num_c;
@@ -65,13 +82,7 @@ int	check_map_char(t_mlx *mlx, char *c, int min, int max)
 	i = 0;
 	while (i < mlx->map_height)
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == c[0])
-				num_c++;
-			j++;
-		}
+		num_c += check_map_char2(mlx, c, map, i);
 		i++;
 	}
 	if (!((num_c >= min) && (num_c <= max)))
@@ -84,28 +95,7 @@ int	check_map_char(t_mlx *mlx, char *c, int min, int max)
 
 void	check_map_tokens(t_mlx *mlx)
 {
-	check_map_char(mlx, "p", 1, 1);
-	check_map_char(mlx, "e", 1, 1);
-	mlx->num_collectibles = check_map_char(mlx, "c", 1, INT_MAX);
-}
-
-void	check_map_extension(char *path)
-{
-	path += ft_strlen(path) - 1;
-	if (*path == 'r')
-	{
-		path--;
-		if (*path == 'e')
-		{
-			path--;
-			if (*path == 'b')
-			{
-				path--;
-				if (*path == '.')
-					return ;
-			}
-		}
-	}
-	ft_printf("Error: map extension must be .ber\n");
-	exit(0);
+	check_map_char(mlx, "P", 1, 1);
+	check_map_char(mlx, "E", 1, 1);
+	mlx->num_collectibles = check_map_char(mlx, "C", 1, INT_MAX);
 }

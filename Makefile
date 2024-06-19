@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/06/19 15:25:24 by sklaps           ###   ########.fr        #
+#    Updated: 2024/06/19 16:35:00 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = \
 	  src/close.c \
 	  src/init_game.c \
 	  src/init_check_map.c \
+	  src/init_check_map2.c \
 	  src/flood.c \
 	  src/flood2.c
 EXT_LIB = libft/libft.a

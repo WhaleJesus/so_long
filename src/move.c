@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:26:24 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:26:26 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:38:37 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	add_turn(t_mlx *mlx)
 
 void	turn_move(t_mlx *mlx)
 {
-	if (mlx->map[mlx->y][mlx->x] == 'c')
+	if (mlx->map[mlx->y][mlx->x] == 'C')
 	{
 		mlx->score += 1;
 		my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
 	}
-	else if (mlx->map[mlx->y][mlx->x] == 'e')
+	else if (mlx->map[mlx->y][mlx->x] == 'E')
 		game_over(mlx);
-	mlx->map[mlx->y][mlx->x] = 'p';
+	mlx->map[mlx->y][mlx->x] = 'P';
 	my_put_img(mlx, mlx->img_player, mlx->x, mlx->y);
 	add_turn(mlx);
 }
