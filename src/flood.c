@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:13:20 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/18 13:57:43 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 13:54:23 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,84 +33,28 @@ int	is_valid(t_mlx *mlx, int **visited, int x, int y)
 	return (0);
 }
 
-void	printvisited(t_mlx *mlx, int **visited)
+int	flood_fill(t_mlx *mlx, int x, int y, int directions[4][2])
 {
-	int	x;
-	int	y;
+	int	i;
+	int	new_x;
+	int	new_y;
 
-	y = 0;
-	while (y < mlx->map_height)
+	if (mlx->map[y][x] == 'e')
+		return (1);
+	mlx->flood->visited[y][x] = 1;
+	i = 0;
+	while (i < 4)
 	{
-		x = 0;
-		while (x < mlx->map_width)
+		new_x = x + directions[i][0];
+		new_y = y + directions[i][1];
+		if (is_valid(mlx, mlx->flood->visited, new_x, new_y) == 1)
 		{
-			ft_printf("%i", visited[y][x]);
-			x++;
+			if (flood_fill(mlx, new_x, new_y, directions))
+				return (1);
 		}
-		ft_printf(" | ");
-		ft_printf("%s", mlx->map[y]);
-		y++;
+		i++;
 	}
-	ft_printf("\n");
-}
-
-int flood_fill(t_mlx *mlx, int x, int y, int directions[4][2])
-{
-    int i;
-    int new_x;
-    int new_y;
-
-    if (mlx->map[y][x] == 'e')
-        return (1);
-
-    mlx->flood->visited[y][x] = 1;
-
-    i = 0;
-    while (i < 4)
-    {
-        new_x = x + directions[i][0];
-        new_y = y + directions[i][1];
-
-        if (is_valid(mlx, mlx->flood->visited, new_x, new_y) == 1)
-        {
-            if (flood_fill(mlx, new_x, new_y, directions))
-                return (1);
-        }
-        i++;
-    }
-
-    return (0);
-}
-
-int	is_path_to_exit_continued(t_flood *f, t_mlx *mlx)
-{
-	f->y = 0;
-	while (f->y < mlx->map_height)
-	{
-		f->visited[f->y] = (int *)malloc(mlx->map_width * sizeof(int));
-		if (!f->visited[f->y])
-		{
-			while (f->y > 0)
-			{
-				free(f->visited[--f->y]);
-			}
-			free(f->visited);
-			return (0);
-		}
-		f->y++;
-	}
-	f->y = 0;
-	while (f->y < mlx->map_height)
-	{
-		f->x = 0;
-		while (f->x < mlx->map_width)
-		{
-			f->visited[f->y][f->x] = 0;
-			f->x++;
-		}
-		f->y++;
-	}
-	return (1);
+	return (0);
 }
 
 int	is_path_to_exit(t_mlx *mlx)

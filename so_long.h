@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/18 16:21:43 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:29:25 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define C 1013904223
 # define M 4294967296  
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -51,7 +51,7 @@ typedef struct	s_img
 	int		endian;
 }	t_img;
 
-typedef struct	s_imgfile
+typedef struct s_imgfile
 {
 	void		*img;
 	int			img_width;
@@ -59,31 +59,31 @@ typedef struct	s_imgfile
 	char		*relative_path;
 }	t_imgfile;
 
-typedef struct	s_flood
+typedef struct s_flood
 {
 	int		**visited;
 	int		x;
 	int		y;
 }	t_flood;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*img_wall;
-	void	*img_player;
-	void	*img_collectible;
-	void	*img_exit;
-	void	*img_background;
-	struct s_img	*img_clear;
-	char	**map;
-	int		map_width;
-	int		map_height;
-	int		x;
-	int		y;
-	int		turn;
-	int		score;
-	int		num_collectibles;
+	void			*mlx;
+	void			*win;
+	void			*img_wall;
+	void			*img_player;
+	void			*img_collectible;
+	void			*img_exit;
+	void			*img_background;
+	struct s_img	img_clear;
+	char			**map;
+	int				map_width;
+	int				map_height;
+	int				x;
+	int				y;
+	int				turn;
+	int				score;
+	int				num_collectibles;
 	struct s_flood	*flood;
 }	t_mlx;
 
@@ -92,15 +92,19 @@ void			img_clear_pixel_put(t_mlx *mlx, t_img *img);
 int				key_hook(int keycode, t_mlx *mlx);
 int				create_trgb(int t, int r, int g, int b);
 
-unsigned int	lcg_rand_range(unsigned int *current, unsigned int min, unsigned int max);
-
 void			my_put_img(t_mlx *mlx, void *img, int x, int y);
 void			*my_create_img(t_mlx *mlx, char *path);
 int				init_imgs(t_mlx *mlx);
 void			init_mlx(t_mlx *mlx, char *path);
 
+void			check_map_edges(t_mlx *mlx);
+void			check_map_tokens(t_mlx *mlx);
+void			check_map_extension(char *path);
+void			check_map_too_big(t_mlx *mlx);
+
 int				draw_map(char **map, t_mlx *mlx);
 char			**read_map(char *path, t_mlx *mlx);
+void			display_turn_counter(t_mlx *mlx);
 
 void			turn_move_vertical(t_mlx *mlx, int direction);
 void			turn_move_horizontal(t_mlx *mlx, int direction);
@@ -109,5 +113,7 @@ int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);
 
-int is_path_to_exit(t_mlx *mlx);
+int				is_path_to_exit(t_mlx *mlx);
+int				is_path_to_exit_continued(t_flood *f, t_mlx *mlx);
+
 #endif

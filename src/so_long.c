@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/18 11:11:01 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/19 15:24:22 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	key_hook(int keycode, t_mlx *mlx)
 	return (0);
 }
 
-
 int	main(int argc, char *argv[])
 {
 	t_mlx		mlx;
@@ -52,5 +51,4 @@ int	main(int argc, char *argv[])
 	}
 	init_mlx(&mlx, argv[argc - 1]);
 	mlx_loop(mlx.mlx);
-	
 }

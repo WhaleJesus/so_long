@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rand_num.c                                         :+:      :+:    :+:   */
+/*   draw_map2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 16:47:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/05/25 17:12:47 by sklaps           ###   ########.fr       */
+/*   Created: 2024/06/19 14:54:11 by sklaps            #+#    #+#             */
+/*   Updated: 2024/06/19 15:08:29 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-// Function to generate the next random number
-unsigned int lcg_rand(unsigned int *current)
+void	check_map_too_big(t_mlx *mlx)
 {
-    *current = (A * (*current) + C) % M;
-    return *current;
-}
-
-// Function to generate a random number within a specific range [min, max]
-unsigned int lcg_rand_range(unsigned int *current, unsigned int min, unsigned int max)
-{
-    unsigned int range = max - min + 1;
-    return (lcg_rand(current) % range) + min;
+	if (mlx->map_height * GRID_SIZE > SCREEN_HEIGHT || mlx->map_width - 1
+		* GRID_SIZE > SCREEN_WIDTH)
+	{
+		ft_printf("Error: please make map no bigger than: W:%i H:%i\n",
+			SCREEN_WIDTH / GRID_SIZE, SCREEN_HEIGHT / GRID_SIZE);
+		exit(0);
+	}
 }
