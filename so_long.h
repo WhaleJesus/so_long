@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 16:34:35 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 12:27:16 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ typedef struct s_flood
 	int		**visited;
 	int		x;
 	int		y;
+	int		y2;
+	int		x2;
+	char	*wall;
 }	t_flood;
 
 typedef struct s_mlx
@@ -114,7 +117,7 @@ int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);
 
-int				is_path_to_exit(t_mlx *mlx);
+int				is_path_to_exit(t_mlx *mlx, char c, char *wall);
 int				is_path_to_exit_continued(t_flood *f, t_mlx *mlx);
 
 #endif
