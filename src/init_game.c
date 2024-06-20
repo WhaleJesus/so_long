@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 12:26:30 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 14:29:19 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 void	check_flood(t_mlx *mlx)
 {
-	if (is_path_to_exit(mlx, 'C', "E1") != mlx->num_collectibles)
+	int	result;
+
+	result = is_path_to_exit(mlx, 'C', "E1");
+	if (result != mlx->num_collectibles)
 	{
-		ft_printf("Error:\nNot all collectibles reachable");
+		if (!(result == -1))
+			ft_printf("Error:\nNot all collectibles reachable");
 		exit_program(mlx);
 	}
-	if (is_path_to_exit(mlx, 'E', "1") != 1)
+	result = is_path_to_exit(mlx, 'E', "1");
+	if (result != 1)
 	{
-		ft_printf("Error:\nPath to exit is not valid");
+		if (!(result == -1))
+			ft_printf("Error:\nPath to exit is not valid");
 		exit_program(mlx);
 	}
 }
@@ -58,7 +64,6 @@ void	init_mlx(t_mlx *mlx, char *path)
 	mlx_hook(mlx->win, 17, 0, exit_program, mlx);
 	init_imgs(mlx);
 	draw_map(mlx->map, mlx);
-	check_map_edges(mlx);
 	check_map_tokens(mlx);
 	check_flood(mlx);
 }

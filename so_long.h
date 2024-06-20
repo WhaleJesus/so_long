@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 12:27:16 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 14:08:28 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void			display_error(int error);
 int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);
+void 			free_flood(t_flood *f, int map_height);
 
 int				is_path_to_exit(t_mlx *mlx, char c, char *wall);
 int				is_path_to_exit_continued(t_flood *f, t_mlx *mlx);

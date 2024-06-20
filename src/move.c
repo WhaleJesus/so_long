@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:26:24 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 16:38:37 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 14:46:34 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,19 @@ void	turn_move(t_mlx *mlx)
 
 void	turn_move_vertical(t_mlx *mlx, int direction)
 {
+	ft_printf("score %i max %i\n", mlx->score, mlx->num_collectibles);
 	if (mlx->map[mlx->y + direction][mlx->x] != '1')
 	{
-		mlx->map[mlx->y][mlx->x] = '0';
-		my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
-		mlx->y += direction;
-		turn_move(mlx);
+		if (!(mlx->score != mlx->num_collectibles
+			&& mlx->map[mlx->y + direction][mlx->x] == 'E'))
+		{
+			mlx->map[mlx->y][mlx->x] = '0';
+			my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
+			mlx->y += direction;
+			turn_move(mlx);
+		}
+		else
+			ft_printf("Not all collectibles collected");
 	}
 }
 
@@ -54,9 +61,15 @@ void	turn_move_horizontal(t_mlx *mlx, int direction)
 {
 	if (mlx->map[mlx->y][mlx->x + direction] != '1')
 	{
-		mlx->map[mlx->y][mlx->x] = '0';
-		my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
-		mlx->x += direction;
-		turn_move(mlx);
+		if (!(mlx->score != mlx->num_collectibles
+			&& mlx->map[mlx->y][mlx->x + direction] == 'E'))
+		{
+			mlx->map[mlx->y][mlx->x] = '0';
+			my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
+			mlx->x += direction;
+			turn_move(mlx);
+		}
+		else
+			ft_printf("Not all collectibles collected");
 	}
 }
