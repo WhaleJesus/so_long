@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 14:08:28 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 16:02:27 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ typedef struct s_imgfile
 
 typedef struct s_flood
 {
-	int		**visited;
-	int		x;
-	int		y;
-	int		y2;
-	int		x2;
-	char	*wall;
-}	t_flood;
+    int **visited;
+    int y2;
+    int x2;
+    char *wall;
+    int directions[4][2];
+    char target;
+} t_flood;
 
 typedef struct s_mlx
 {

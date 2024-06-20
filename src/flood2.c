@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:56:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 14:08:29 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 16:03:35 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int is_path_to_exit_continued(t_flood *f, t_mlx *mlx)
     return (1);
 }
 
-void free_flood(t_flood *f, int map_height)
+void uwufree_flood(t_flood *f, int map_height)
 {
     int y;
 
