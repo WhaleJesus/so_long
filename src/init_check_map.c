@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:14:44 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 14:47:35 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 15:29:55 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,4 @@ void	check_map_tokens(t_mlx *mlx)
 	check_map_char(mlx, "P", 1, 1);
 	check_map_char(mlx, "E", 1, 1);
 	mlx->num_collectibles = check_map_char(mlx, "C", 1, INT_MAX);
-
+}

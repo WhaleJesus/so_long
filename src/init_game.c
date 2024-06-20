@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 14:29:19 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/20 15:32:34 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_flood(t_mlx *mlx)
 	result = is_path_to_exit(mlx, 'C', "E1");
 	if (result != mlx->num_collectibles)
 	{
-		if (!(result == -1))
+		if (result != -1)
 			ft_printf("Error:\nNot all collectibles reachable");
 		exit_program(mlx);
 	}
