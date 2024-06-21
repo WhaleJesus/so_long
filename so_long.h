@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:09:00 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:29:17 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 
-# define SCREEN_WIDTH 1080
-# define SCREEN_HEIGHT 700
+# define SCREEN_WIDTH 3840
+# define SCREEN_HEIGHT 2160
 # define GRID_SIZE 100
 
 # define PATH_WALL "img/wall.xpm"

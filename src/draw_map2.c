@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:54:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 16:26:32 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:27:48 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_map_too_big(t_mlx *mlx)
 {
-	if (mlx->map_height * GRID_SIZE > SCREEN_HEIGHT || mlx->map_width - 1
+	if (mlx->map_height * GRID_SIZE > SCREEN_HEIGHT || (mlx->map_width - 1)
 		* GRID_SIZE > SCREEN_WIDTH)
 	{
 		ft_printf("Error: please make map no bigger than: W:%i H:%i\n",
