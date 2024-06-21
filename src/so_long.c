@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:24:22 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:21:03 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	exit_program(t_mlx *mlx)
 
 int	key_hook(int keycode, t_mlx *mlx)
 {
-	ft_printf("Hello from key_hook! %i\n", keycode);
 	if ((keycode == KEY_W) || (keycode == KEY_UP))
 		turn_move_vertical(mlx, -1);
 	else if ((keycode == KEY_D) || (keycode == KEY_RIGHT))
@@ -36,7 +35,6 @@ int	key_hook(int keycode, t_mlx *mlx)
 		ft_printf("esc");
 		exit_program(mlx);
 	}
-	ft_printf("\n");
 	return (0);
 }
 

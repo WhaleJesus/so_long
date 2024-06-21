@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:26:24 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 14:46:34 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:05:31 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	turn_move_vertical(t_mlx *mlx, int direction)
 	if (mlx->map[mlx->y + direction][mlx->x] != '1')
 	{
 		if (!(mlx->score != mlx->num_collectibles
-			&& mlx->map[mlx->y + direction][mlx->x] == 'E'))
+				&& mlx->map[mlx->y + direction][mlx->x] == 'E'))
 		{
 			mlx->map[mlx->y][mlx->x] = '0';
 			my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);
@@ -62,7 +62,7 @@ void	turn_move_horizontal(t_mlx *mlx, int direction)
 	if (mlx->map[mlx->y][mlx->x + direction] != '1')
 	{
 		if (!(mlx->score != mlx->num_collectibles
-			&& mlx->map[mlx->y][mlx->x + direction] == 'E'))
+				&& mlx->map[mlx->y][mlx->x + direction] == 'E'))
 		{
 			mlx->map[mlx->y][mlx->x] = '0';
 			my_put_img(mlx, mlx->img_background, mlx->x, mlx->y);

@@ -6,52 +6,11 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:14:44 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 15:29:55 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:08:49 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-void	check_map_edges2(t_mlx *mlx, int i, int j)
-{
-	if ((j == 0 || j == (ft_strlen(mlx->map[i]) - 2)))
-	{
-		if (mlx->map[i][j] != '1')
-		{
-			ft_printf("Error: map is not enclosed");
-			exit_program(mlx);
-		}
-	}
-	if ((i == 0) || (i == mlx->map_height - 1))
-	{
-		if (mlx->map[i][j] != '1')
-		{
-			ft_printf("(%i,%i) Error: map is not enclosed\n", i, j);
-			exit_program(mlx);
-		}
-	}
-}
-
-void	check_map_edges(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->map_height)
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
-			if (mlx->map[i][j] != '\n')
-			{
-				check_map_edges2(mlx, i, j);
-			}
-			j++;
-		}
-		i++;
-	}
-}
 
 int	check_map_char2(t_mlx *mlx, char *c, char **map, int i)
 {

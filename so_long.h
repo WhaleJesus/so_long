@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/20 16:02:27 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 13:09:00 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ typedef struct s_imgfile
 
 typedef struct s_flood
 {
-    int **visited;
-    int y2;
-    int x2;
-    char *wall;
-    int directions[4][2];
-    char target;
-} t_flood;
+	int		**visited;
+	int		y2;
+	int		x2;
+	char	*wall;
+	int		directions[4][2];
+	char	target;
+}	t_flood;
 
 typedef struct s_mlx
 {
@@ -100,7 +100,6 @@ void			*my_create_img(t_mlx *mlx, char *path);
 int				init_imgs(t_mlx *mlx);
 void			init_mlx(t_mlx *mlx, char *path);
 
-void			check_map_edges(t_mlx *mlx);
 void			check_map_tokens(t_mlx *mlx);
 void			check_map_extension(char *path);
 void			check_map_too_big(t_mlx *mlx);
@@ -116,9 +115,13 @@ void			display_error(int error);
 int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);
-void 			free_flood(t_flood *f, int map_height);
+void			free_flood(t_flood *f, int map_height);
 
 int				is_path_to_exit(t_mlx *mlx, char c, char *wall);
 int				is_path_to_exit_continued(t_flood *f, t_mlx *mlx);
+int				flood_fill(t_mlx *mlx, int x, int y);
+int				flood_fill_continued(t_mlx *mlx, int x, int y, int num_c);
+void			init_flood_visited(t_mlx *mlx, t_flood *f);
+int				is_valid(t_mlx *mlx, int x, int y);
 
 #endif
