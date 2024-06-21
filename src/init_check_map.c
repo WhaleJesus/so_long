@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:14:44 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:08:49 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:03:14 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_map_char(t_mlx *mlx, char *c, int min, int max)
 	}
 	if (!((num_c >= min) && (num_c <= max)))
 	{
-		ft_printf("Error: please keep %s between %i and %i\n", c, min, max);
+		ft_printf("ERROR\nPlease keep %s between %i and %i", c, min, max);
 		exit_program(mlx);
 	}
 	return (num_c);

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:09:51 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:21:03 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:08:53 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int	main(int argc, char *argv[])
 	t_mlx		mlx;
 
 	if (argc != 2)
-	{
-		display_error(1);
-		exit(0);
-	}
+		display_error("Wrong amount of args", 0, &mlx);
 	init_mlx(&mlx, argv[argc - 1]);
 	mlx_loop(mlx.mlx);
 }

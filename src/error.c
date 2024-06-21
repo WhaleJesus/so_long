@@ -6,19 +6,17 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:21:58 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/19 15:27:00 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:08:52 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	display_error(int error)
+void	display_error(char *msg, int iexit, t_mlx *mlx)
 {
-	char	*msg;
-
-	if (error == 1)
-		msg = "Wrong amount of args";
-	if (error == 2)
-		msg = "map size does not represent square or rechthoek";
-	ft_printf("Error: %s.\n", msg);
+	ft_printf("ERROR\n%s", msg);
+	if (iexit == 0)
+		exit(0);
+	else if (iexit == 1)
+		exit_program(mlx);
 }

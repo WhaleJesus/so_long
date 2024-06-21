@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:29:17 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:08:49 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void			display_turn_counter(t_mlx *mlx);
 
 void			turn_move_vertical(t_mlx *mlx, int direction);
 void			turn_move_horizontal(t_mlx *mlx, int direction);
-void			display_error(int error);
+void			display_error(char *msg, int iexit, t_mlx *mlx);
 int				exit_program(t_mlx *mlx);
 void			free_array(t_mlx *mlx);
 void			free_imgs(t_mlx *mlx);

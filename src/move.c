@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:26:24 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:05:31 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:05:17 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	turn_move(t_mlx *mlx)
 
 void	turn_move_vertical(t_mlx *mlx, int direction)
 {
-	ft_printf("score %i max %i\n", mlx->score, mlx->num_collectibles);
 	if (mlx->map[mlx->y + direction][mlx->x] != '1')
 	{
 		if (!(mlx->score != mlx->num_collectibles

@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:35:50 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:01:35 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/21 14:01:38 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	is_path_to_exit(t_mlx *mlx, char c, char *wall)
 
 	f = malloc(sizeof(t_flood));
 	if (!f)
-		return (0);
+		display_error("Flood struct malloc failed", 1, mlx);
 	f->visited = (int **)malloc(mlx->map_height * sizeof(int *));
 	if (!f->visited)
 	{
 		free(f);
-		return (0);
+		display_error("Flood visited array malloc failed", 1, mlx);
 	}
 	init_flood_visited(mlx, f);
 	initialize_directions(f->directions);
