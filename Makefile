@@ -6,7 +6,7 @@
 #    By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/18 22:19:15 by sklaps            #+#    #+#              #
-#    Updated: 2024/06/19 16:35:00 by sklaps           ###   ########.fr        #
+#    Updated: 2024/06/22 16:16:48 by sklaps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(NAME): $(OBJ)
 	cd libft && make all clean && cd ../ && $(CC) $(OBJ) $(EXT_LIB) -Lmlx_linux -g -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	$(CC) -I/usr/include -Imlx_linux -g -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -g -O3 -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

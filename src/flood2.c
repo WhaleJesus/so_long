@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:56:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:03:58 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:18:18 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	init_flood_visited(t_mlx *mlx, t_flood *f)
 {
 	int	y;
 	int	x;
-	int	j;
 
 	y = 0;
 	while (y < mlx->map_height)

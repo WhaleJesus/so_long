@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:14:44 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 14:03:14 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/22 16:17:31 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	check_map_char(t_mlx *mlx, char *c, int min, int max)
 {
 	int		num_c;
 	int		i;
-	int		j;
 	char	**map;
 
 	map = mlx->map;
