@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/21 13:55:48 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/24 17:22:54 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,20 @@ int	draw_map(char **map, t_mlx *mlx)
 
 void	get_map_sizes2(t_mlx *mlx, char *line, int width)
 {
+	int	error;
+
+	error = 0;
 	width = ft_strlen(line) - 1;
-	if ((width != mlx->map_width) && (mlx->map_width != 0))
+	if ((width != mlx->map_width) && (mlx->map_width != 0) && line[0] != '\n')
+		error = 1;
+	if (!(line[0] == '\n'))
 	{
-		free(line);
-		display_error("map size does not represent square or rechthoek", 0, mlx);
+		mlx->map_width = width;
+		mlx->map_height++;
 	}
-	mlx->map_width = width;
 	free(line);
-	mlx->map_height++;
+	if (error == 1)
+		display_error("Map is not square or rechthoek", 0, mlx);
 }
 
 int	get_map_sizes(t_mlx *mlx, char *path)
@@ -70,7 +75,10 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 	int		fd;
 	int		width;
 	char	*line;
+	char	*line2;
 
+	width = 0;
+	line = "";
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		display_error("Error Opening Map file", 0, mlx);
@@ -79,6 +87,12 @@ int	get_map_sizes(t_mlx *mlx, char *path)
 		line = get_next_line(fd);
 		if (NULL == line)
 			break ;
+		if (!ft_strchr(line, '\n'))
+		{
+			line2 = ft_strjoin(line, "\n");
+			free(line);
+			line = line2;
+		}
 		get_map_sizes2(mlx, line, width);
 	}
 	free(line);
@@ -92,9 +106,11 @@ char	**read_map(char *path, t_mlx *mlx)
 {
 	char	**map;
 	char	*line;
+	char	*line2;
 	int		fd;
 	int		i;
 
+	line = "";
 	get_map_sizes(mlx, path);
 	check_map_too_big(mlx);
 	fd = open(path, O_RDONLY);
@@ -107,8 +123,19 @@ char	**read_map(char *path, t_mlx *mlx)
 		line = get_next_line(fd);
 		if (NULL == line)
 			break ;
-		map[i] = line;
-		i++;
+		if (!ft_strchr(line, '\n'))
+		{
+			line2 = ft_strjoin(line, "\n");
+			free(line);
+			line = line2;
+		}
+		if (!(line[0] == '\n'))
+		{
+			map[i] = line;
+			i++;
+		}
+		else
+			free(line);
 	}
 	free(line);
 	close(fd);
