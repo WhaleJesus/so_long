@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/24 17:22:54 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 14:50:02 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,92 +52,51 @@ int	draw_map(char **map, t_mlx *mlx)
 	return (0);
 }
 
-void	get_map_sizes2(t_mlx *mlx, char *line, int width)
+int	get_map_sizes2(t_mlx *mlx, char *line, int width)
 {
 	int	error;
 
 	error = 0;
 	width = ft_strlen(line) - 1;
-	if ((width != mlx->map_width) && (mlx->map_width != 0) && line[0] != '\n')
+	if ((width != mlx->map_width) && (mlx->map_width != 0))
 		error = 1;
-	if (!(line[0] == '\n'))
-	{
-		mlx->map_width = width;
-		mlx->map_height++;
-	}
+	mlx->map_width = width;
+	mlx->map_height++;
 	free(line);
-	if (error == 1)
-		display_error("Map is not square or rechthoek", 0, mlx);
+	ft_printf("error %i\n", error);
+	return (error);
 }
 
-int	get_map_sizes(t_mlx *mlx, char *path)
+void	get_map_sizes(t_mlx *mlx, char *path)
 {
 	int		fd;
-	int		width;
 	char	*line;
-	char	*line2;
+	int		error;
 
-	width = 0;
+	error = 0;
 	line = "";
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		display_error("Error Opening Map file", 0, mlx);
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (NULL == line)
-			break ;
-		if (!ft_strchr(line, '\n'))
-		{
-			line2 = ft_strjoin(line, "\n");
-			free(line);
-			line = line2;
-		}
-		get_map_sizes2(mlx, line, width);
-	}
-	free(line);
+	get_map_sizes3(line, &error, fd, mlx);
 	close(fd);
-	if (mlx->map_height < 3 || mlx->map_width < 3)
+	if (mlx->map_height < 3 || mlx->map_width < 3 || error > 0)
 		display_error("Just straight up what is this map", 0, mlx);
-	return (0);
 }
 
 char	**read_map(char *path, t_mlx *mlx)
 {
 	char	**map;
 	char	*line;
-	char	*line2;
 	int		fd;
 	int		i;
 
 	line = "";
+	i = 0;
 	get_map_sizes(mlx, path);
 	check_map_too_big(mlx);
 	fd = open(path, O_RDONLY);
-	i = 0;
-	map = malloc(sizeof(char *) * mlx->map_height);
-	if (!map)
-		display_error("map malloc failed", 0, mlx);
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (NULL == line)
-			break ;
-		if (!ft_strchr(line, '\n'))
-		{
-			line2 = ft_strjoin(line, "\n");
-			free(line);
-			line = line2;
-		}
-		if (!(line[0] == '\n'))
-		{
-			map[i] = line;
-			i++;
-		}
-		else
-			free(line);
-	}
-	free(line);
+	map = read_map2(mlx, fd, i, line);
 	close(fd);
 	return (map);
 }

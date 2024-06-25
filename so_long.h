@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/24 15:58:21 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 14:50:06 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void			check_map_illegal_char(char c, t_mlx *mlx);
 
 int				draw_map(char **map, t_mlx *mlx);
 char			**read_map(char *path, t_mlx *mlx);
+char			**read_map2(t_mlx *mlx, int fd, int i, char *line);
+void			get_map_sizes3(char *line, int *error, int fd, t_mlx *mlx);
+int				get_map_sizes2(t_mlx *mlx, char *line, int width);
 void			display_turn_counter(t_mlx *mlx);
 
 void			turn_move_vertical(t_mlx *mlx, int direction);
