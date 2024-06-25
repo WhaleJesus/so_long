@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:01:11 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/25 14:50:02 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:43:33 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	get_map_sizes2(t_mlx *mlx, char *line, int width)
 	mlx->map_width = width;
 	mlx->map_height++;
 	free(line);
-	ft_printf("error %i\n", error);
 	return (error);
 }
 

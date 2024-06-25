@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 18:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/24 16:00:17 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:42:30 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_array(t_mlx *mlx)
 	int	i;
 
 	i = 0;
-	while (i < mlx->map_height + mlx->map_extra_height)
+	while (i < mlx->map_height)
 	{
 		free(mlx->map[i]);
 		i++;

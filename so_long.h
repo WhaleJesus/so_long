@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 22:10:56 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/25 14:50:06 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:41:45 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_mlx
 	char			**map;
 	int				map_width;
 	int				map_height;
-	int				map_extra_height;
 	int				x;
 	int				y;
 	int				turn;

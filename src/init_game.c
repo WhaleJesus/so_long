@@ -6,7 +6,7 @@
 /*   By: sklaps <sklaps@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:29:21 by sklaps            #+#    #+#             */
-/*   Updated: 2024/06/24 15:58:51 by sklaps           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:42:47 by sklaps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	init_mlx(t_mlx *mlx, char *path)
 {
 	mlx->map_width = 0;
 	mlx->map_height = 0;
-	mlx->map_extra_height = 0;
 	mlx->score = 0;
 	mlx->turn = 0;
 	check_map_extension(path);
